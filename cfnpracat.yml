@@ -26,6 +26,9 @@ Resources:
       ImageId: !Ref ImageID
       InstanceType: !Ref MyInstanceType
       KeyName: !Ref MyKeyName
+      Tags: 
+        - Key: "Name"
+          Value: subhash_instance
       SecurityGroups:
         - default        
         - !Ref SSHSecurityGroup 
