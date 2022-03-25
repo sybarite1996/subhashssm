@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AZ Parameter subhash
+
+Parameters:
+  MyKeyName:
+    Description: Select the key name from the list
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::KeyPair::KeyName>
+    Default: KeyName
+  MyAvailabilityZone:
+    Description: Select the AZ
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: AZName
+  MyInstanceType:
+    Description: Select the ec2 instance type from SSM
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: InstType
+  ImageID:
+    Description: image AMI id 
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: AMIID
+
+Resources: 
+  DevEC2Instance: 
+    Type: 'AWS::EC2::Instance'
+    Properties: 
+      ImageId: !Ref ImageID
+      InstanceType: !Ref MyInstanceType
+      KeyName: !Ref MyKeyName
+      SecurityGroups:
+        - default        
+        - !Ref SSHSecurityGroup 
+      AvailabilityZone: !Ref MyAvailabilityZone      
+  SSHSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties: 
+      GroupDescription: my new SSH security group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
+
+
+
