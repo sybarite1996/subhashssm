@@ -28,7 +28,7 @@ Resources:
       KeyName: !Ref MyKeyName
       Tags: 
         - Key: "Name"
-          Value: subhash_instance3
+          Value: subhash_instance4
       SecurityGroups:
         - default        
         - !Ref SSHSecurityGroup 
