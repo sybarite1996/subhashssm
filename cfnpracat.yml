@@ -18,6 +18,10 @@ Parameters:
     Description: image AMI id 
     Type: AWS::SSM::Parameter::Value<String>
     Default: AMIID
+  Instname: 
+    Description: Instance name
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: InstName
 
 Resources: 
   DevEC2Instance: 
@@ -28,7 +32,7 @@ Resources:
       KeyName: !Ref MyKeyName
       Tags: 
         - Key: "Name"
-          Value: subhash_instance6
+          Value: !Ref Instname
       SecurityGroups:
         - default        
         - !Ref SSHSecurityGroup 
@@ -42,6 +46,5 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: 0.0.0.0/0
-
 
 
