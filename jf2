@@ -4,7 +4,11 @@ pipeline {
         stage('Submit Stack') {
             steps {
             sh """
-                    aws ssm put-parameter --name InstName --value "subhash_instance9" --type String --overwrite --region 'ap-south-1'
+                    aws ssm put-parameter --name AZName   --value "ap-south-1b" --type String --overwrite --region 'ap-south-1'
+                   
+                    aws ssm put-parameter --name InstType --value "t2.medium" --type String --overwrite --region 'ap-south-1'
+  
+                    aws ssm put-parameter --name InstName --value "subhash_instance2" --type String --overwrite --region 'ap-south-1'
                     
                     
                     aws cloudformation update-stack --stack-name subhashssm1 --template-body file://cfnpracat.yml --region 'ap-south-1'
