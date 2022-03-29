@@ -4,7 +4,7 @@ pipeline {
         stage('Submit Stack') {
             steps {
             sh """
-                    aws ssm put-parameter --name InstName --value "subhash_instance12" --type String --overwrite
+                    aws ssm put-parameter --name InstName --value "subhash_instance12" --type String --overwrite --region 'ap-south-1'
                     
                     
                     aws cloudformation create-stack --stack-name subhashssm1 --region 'ap-south-1' 
