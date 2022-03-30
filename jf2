@@ -10,6 +10,10 @@ pipeline {
   
                     aws ssm put-parameter --name InstName --value "subhash_instance2" --type String --overwrite --region 'ap-south-1'
                     
+                    
+                    pip3 install awscli --user
+                    pip3 install boto3 --user
+  
                     python3 amiid.py
                     
                     python3 instancetype.py
