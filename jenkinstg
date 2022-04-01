@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    environment { 
+        ARN_ONE = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/tagetgrp-2/47adc557a15a4c99"
+        ARN_TWO = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/targetgrp-1/7be33d6cd55cc2b7"
+        ARN_THREE = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/targetgrp-3/dbf767e96522a364"
+    }
+    stages {
+        stage('Target Groups') {
+            steps {
+            sh """
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_ONE --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"   
+                    
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_TWO --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"
+
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_THREE --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"  
+                
+                """
+              }
+             }
+            }
+            }
