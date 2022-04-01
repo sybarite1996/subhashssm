@@ -10,11 +10,11 @@ pipeline {
         stage('Target Groups') {
             steps {
             sh """
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_ONE --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"   
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_ONE --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"   
                     
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_TWO --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_TWO --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"
 
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_THREE --output table | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"  
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_THREE --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"  
                 
                 """
               }
