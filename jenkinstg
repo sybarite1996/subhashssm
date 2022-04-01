@@ -5,16 +5,17 @@ pipeline {
         ARN_ONE = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/tagetgrp-2/47adc557a15a4c99"
         ARN_TWO = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/targetgrp-1/7be33d6cd55cc2b7"
         ARN_THREE = "arn:aws:elasticloadbalancing:ap-south-1:696657890510:targetgroup/targetgrp-3/dbf767e96522a364"
+        region1 = "ap-south-1"
     }
     stages {
         stage('Target Groups') {
             steps {
             sh """
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_ONE --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"   
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_ONE --output table --region $region1 | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"   
                     
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_TWO --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_TWO --output table --region $region1 | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"
 
-                  aws elbv2 describe-target-groups     --target-group-arns $ARN_THREE --output table --region 'ap-south-1' | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"  
+                  aws elbv2 describe-target-groups     --target-group-arns $ARN_THREE --output table --region $region1 | grep -e "TargetGroupName" -e "HttpCode" -e "HealthCheckEnabled" -e "HealthCheckIntervalSeconds" -e "UnhealthyThresholdCount" -e "HealthyThresholdCount" -e "HealthCheckTimeoutSeconds"  
                 
                 """
               }
