@@ -4,11 +4,11 @@ pipeline {
         stage('Submit Stack') {
             steps {
             sh """
-                    aws ssm put-parameter --name AZName   --value "ap-south-1b" --type String --overwrite --region 'ap-south-1'
+                    aws ssm put-parameter --name AZName   --value "ap-south-1a" --type String --overwrite --region 'ap-south-1'
                    
                     aws ssm put-parameter --name KeyName --value "mackey1" --type String --overwrite --region 'ap-south-1'
   
-                    aws ssm put-parameter --name InstName --value "subhash_instance1" --type String --overwrite --region 'ap-south-1'
+                    aws ssm put-parameter --name InstName --value "subhash_instance3" --type String --overwrite --region 'ap-south-1'
                     
                     
                     pip3 install awscli --user
@@ -22,7 +22,7 @@ pipeline {
                     
                     python3 allparam.py   
 
-                    aws cloudformation create-stack --stack-name subhashssm1 --template-body file://cfnpracat.yml --region 'ap-south-1'
+                    aws cloudformation update-stack --stack-name subhashssm1 --template-body file://cfnpracat.yml --region 'ap-south-1'
                 
                 """
               }
