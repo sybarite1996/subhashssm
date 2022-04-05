@@ -8,7 +8,7 @@ pipeline {
                    
                     aws ssm put-parameter --name KeyName --value "mackey1" --type String --overwrite --region 'ap-south-1'
   
-                    aws ssm put-parameter --name InstName --value "subhash_instance5" --type String --overwrite --region 'ap-south-1'
+                    aws ssm put-parameter --name InstName --value "subhash_instance1" --type String --overwrite --region 'ap-south-1'
                     
                     
                     pip3 install awscli --user
